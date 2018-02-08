@@ -2,11 +2,11 @@
     class MycsvModel extends Model{
         public static function opencsvfile($file){
             $handle = fopen($file["myfile"]["tmp_name"],'r');
-            for ($i=0; $i < 5; $i++) {
+            while(($data = fgetcsv($handle)) !== NULL) {
                 if ($i == 0) {
-                    $data = fgetcsv($handle);
+                    //
                 }else{
-                    $data = fgetcsv($handle);
+                    // $data = fgetcsv($handle);
                     if (MycsvModel::insertToDB($data)) {
                         # error
                         return "Error";
@@ -26,7 +26,7 @@
             }
         }
 
-        
+
     }
 
 

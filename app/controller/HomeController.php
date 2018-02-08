@@ -17,7 +17,7 @@
 
         public static function post($param){
             $title = "Home";
-            $mystring = "I come from POST";
+            $mystring = "I come from POSTa";
             // call view
             require_once('../app/template/header.phtml');
             require_once('../app/view/home/body.phtml');
