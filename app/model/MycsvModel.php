@@ -2,10 +2,12 @@
     class MycsvModel extends Model{
         public static function opencsvfile($file){
             $handle = fopen($file["myfile"]["tmp_name"],'r');
+            $i = 0;
             while(($data = fgetcsv($handle)) !== NULL) {
                 if ($i == 0) {
                     //
                 }else{
+                    $i+=1;
                     // $data = fgetcsv($handle);
                     if (MycsvModel::insertToDB($data)) {
                         # error
