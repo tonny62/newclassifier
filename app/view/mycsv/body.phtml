@@ -1,0 +1,48 @@
+<script type="text/javascript">
+    function getFileData(myFile){
+       var file = myFile.files[0];
+       var filename = file.name;
+       document.getElementById("submitbutton").disabled = false;
+       document.getElementById("file-name").innerHTML = filename;
+    }
+</script>
+
+<body>
+    <section class="section">
+        <div class="container">
+            <div class="box">
+                <div class="content">
+                    <h4>CSV Database Upload</h4>
+                    <h3>DB Status : <?php echo $dbstatus; ?></h3>
+                </div>
+                <div class="field">
+                    <form action="/mycsv" method="post"  enctype="multipart/form-data">
+                        <div class="field">
+                            <div class="file has-name">
+                              <label class="file-label">
+                                <input class="file-input" type="file" name="myfile" id="uploadBox" onchange="getFileData(this);">
+                                <span class="file-cta">
+                                  <span class="file-label">
+                                    Choose a file…
+                                  </span>
+                                </span>
+                              </label>
+                                <span class="file-name">
+                                    <p id="file-name">Not Uploaded...</p>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field is-centered">
+                                <input type="submit" name="" value="Continue" class="button" id="submitbutton" disabled/>
+                        </div>
+                    </form>
+                </div>
+                <?php if (isset($status)): ?>
+                    <div class="content">
+                        <h2><?php echo $status; ?></h2>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </section>
+</body>

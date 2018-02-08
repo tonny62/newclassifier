@@ -1,0 +1,98 @@
+<script type="text/javascript">
+    function getFileData(myFile){
+       var file = myFile.files[0];
+       var filename = file.name;
+       document.getElementById("submitbutton").disabled = false;
+       document.getElementById("file-name").innerHTML = filename;
+    }
+</script>
+
+<section class="hero is-light is-medium">
+  <div class="hero-body">
+    <div class="container">
+        <div class="content">
+            <h1 class="is-large">
+              Jobads Classifer
+            </h1>
+        </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column">
+                <div class="box">
+                    <div class="content">
+                        <h3>New Scheme using .CSV file</h2>
+                    </div>
+                    <div class="field has-text-centered">
+                        <form class="" action="index.html" method="post">
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Scheme Name</label>
+                                </div>
+                                <div class="field-body">
+                                    <input type="text" name="schemename" value="" class="input">
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <div class="file has-name is-centered">
+                                  <label class="file-label">
+                                    <input class="file-input" type="file" name="resume" id="uploadBox" onchange="getFileData(this);" >
+                                    <span class="file-cta">
+                                      <span class="file-label">
+                                        Choose a file…
+                                      </span>
+                                    </span>
+                                  </label>
+                                    <span class="file-name">
+                                        <p id="file-name">Not Uploaded...</p>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="field is-centered">
+                                    <input type="submit" name="" value="Continue" class="button" id="submitbutton" disabled/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="box">
+                    <div class="content">
+                        <h3>Select Existing Scheme</h2>
+                    </div>
+                    <div class="columns">
+                        <div class="column">
+
+                        </div>
+                        <div class="column">
+                            <form class="" action="index.html" method="post">
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label>SchemeName</label>
+                                    </div>
+                                    <div class="select">
+                                        <select class="" name="">
+                                            <option value="">1</option>
+                                            <option value="">2</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="field is-centered has-text-centered">
+                                    <input type="submit" class="button" name="" value="Continue">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="column">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
