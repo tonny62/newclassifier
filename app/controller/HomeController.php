@@ -9,6 +9,7 @@
             // var_dump(HomeModel::getAll());
 
             // call view
+            var_dump($param);
             require_once('../app/template/header.phtml');
             require_once('../app/view/home/body.phtml');
             require_once('../app/template/footer.phtml');

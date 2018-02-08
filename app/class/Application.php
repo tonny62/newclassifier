@@ -27,7 +27,7 @@
 
                 // go to home
                 require_once '../app/controller/HomeController.php';
-                $controller = HomeController::get($this->param);
+                $controller = HomeController::get($this->controller);
             }
         }
 
