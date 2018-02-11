@@ -43,7 +43,7 @@
             }
             // insert categories into category table
             foreach ($category_array as $key => $value) {
-                $q = "INSERT INTO category VALUES ('".$value."','".$schemename."','')";
+                $q = "INSERT INTO category VALUES ('".$value."','".$schemename."',null)";
                 $stmt = $db->query($q);
             }
             // insert into tag table from tags_temp
