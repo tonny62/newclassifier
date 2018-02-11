@@ -18,7 +18,6 @@
                 require_once '../app/controller/'.$this->controller.'Controller.php';
                 $controllername = $this->controller.'Controller';
                 $controllerfunction = $this->method;
-
                 $controller = $controllername::$controllerfunction($this->param);
 
             } else {

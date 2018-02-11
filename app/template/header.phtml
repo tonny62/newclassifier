@@ -4,26 +4,32 @@
         <meta charset="utf-8">
         <title><?=$title ?></title>
         <link rel="stylesheet" href="http://localhost/css/bulma.min.css">
+        <link rel="stylesheet" href="http://localhost/css/my.css">
     </head>
 
     <body>
         <nav class="navbar" role="navigation" aria-label="main navigation">
           <div class="navbar-menu">
               <div class="navbar-end">
+                  <?php if (isset($_SESSION['schemename'])): ?>
+                      <div class="navbar-item">
+                              <p>Current Scheme : <?php echo $_SESSION['schemename'] ?></p>
+                      </div>
+                  <?php endif; ?>
                   <div class="navbar-item has-drowdown is-hoverable is-boxed">
                       <div class="navbar-link">
-                          <a href="">Classifier</a>
+                          <a href="/classifier">Classifier</a>
                       </div>
                       <div class="navbar-dropdown">
                           <div class="navbar-item">
-                              <a href="#">Job by Job Classifier</a>
+                              <a href="/classifier">Job by Job Classifier</a>
                           </div>
                           <div class="navbar-item">
-                              <a href="#">Search Classifier</a>
+                              Search Classifier
                           </div>
                           <hr class="navbar-divider">
                           <div class="navbar-item">
-                              <a href="#">Retag Jobs</a>
+                              Retag Jobs
                           </div>
                       </div>
                   </div>
@@ -33,10 +39,10 @@
                       </div>
                       <div class="navbar-dropdown">
                           <div class="navbar-item">
-                              <a href="#">View Schema</a>
+                              <a href="#">View/Change Schema</a>
                           </div>
                           <div class="navbar-item">
-                              <a href="#">New Schema</a>
+                              <a href="/">New Scheme</a>
                           </div>
                       </div>
                   </div>
@@ -55,7 +61,7 @@
                       </div>
                   </div>
                   <div class="navbar-item">
-                      <a href="/home/">Home</a>
+                      <a href="/">Home</a>
                   </div>
                   <div class="navbar-item">
 

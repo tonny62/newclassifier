@@ -1,15 +1,12 @@
 <?php
-    require '../app/model/HomeModel.php';
+    require '../app/model/homeModel.php';
+    session_start();
 
-    class HomeController extends Controller{
+    class homeController extends Controller{
         public static function get($param){
             $title = "Home";
-            $mystring = "I come from GET";
-
-            // var_dump(HomeModel::getAll());
-
             // call view
-            var_dump($param);
+            $rows = homeModel::getScheme();
             require_once('../app/template/header.phtml');
             require_once('../app/view/home/body.phtml');
             require_once('../app/template/footer.phtml');
@@ -17,7 +14,6 @@
 
         public static function post($param){
             $title = "Home";
-            $mystring = "I come from POSTa";
             // call view
             require_once('../app/template/header.phtml');
             require_once('../app/view/home/body.phtml');

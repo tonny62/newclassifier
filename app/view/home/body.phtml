@@ -6,7 +6,6 @@
        document.getElementById("file-name").innerHTML = filename;
     }
 </script>
-
 <section class="hero is-light is-medium">
   <div class="hero-body">
     <div class="container">
@@ -25,10 +24,11 @@
             <div class="column">
                 <div class="box">
                     <div class="content">
-                        <h3>New Scheme using .CSV file</h2>
+                        <h3>New Scheme using tab separated value (plaintextfile, .txt)</h2>
                     </div>
                     <div class="field has-text-centered">
-                        <form class="" action="index.html" method="post">
+                        <form class="" action="/scheme" method="post" enctype="multipart/form-data">
+                            <!-- file upload -->
                             <div class="field is-horizontal">
                                 <div class="field-label is-normal">
                                     <label class="label">Scheme Name</label>
@@ -41,7 +41,7 @@
                             <div class="field">
                                 <div class="file has-name is-centered">
                                   <label class="file-label">
-                                    <input class="file-input" type="file" name="resume" id="uploadBox" onchange="getFileData(this);" >
+                                    <input class="file-input" type="file" name="schemefile" id="uploadBox" onchange="getFileData(this);" >
                                     <span class="file-cta">
                                       <span class="file-label">
                                         Choose a file…
@@ -58,6 +58,11 @@
                             </div>
                         </form>
                     </div>
+                    <div class="content">
+                        <h4><u>File Structure</u></h4>
+                        <h5>categoryname &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp jobcode &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp jobname &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp jobdescription</h5>
+                        <h5>*whitespace = \t</h5>
+                    </div>
                 </div>
             </div>
             <div class="column">
@@ -70,15 +75,18 @@
 
                         </div>
                         <div class="column">
-                            <form class="" action="index.html" method="post">
+                            <form class="" action="/classifier" method="post">
                                 <div class="field is-horizontal">
                                     <div class="field-label is-normal">
                                         <label>SchemeName</label>
                                     </div>
                                     <div class="select">
-                                        <select class="" name="">
-                                            <option value="">1</option>
-                                            <option value="">2</option>
+                                        <select class="" name="schemename">
+                                            <?php
+                                                while(($row = $rows->fetch(PDO::FETCH_ASSOC))){
+                                                    echo "<option value='".$row['schemename']."'>".$row['schemename']." - ".$row['timestamp']."</option>";
+                                                }
+                                             ?>
                                         </select>
                                     </div>
                                 </div>

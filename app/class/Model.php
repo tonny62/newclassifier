@@ -7,7 +7,7 @@
             if($db == null){
                 try{
                     $dsn = 'mysql:host='. dbConnection::DBHOST.';dbname='.dbConnection::DBNAME.';charset=utf8';
-                    $db = new PDO($dsn, dbConnection::DBUSER,dbConnection::DBPASSWORD);
+                    $db = new PDO($dsn, dbConnection::DBUSER,dbConnection::DBPASSWORD,array(PDO::MYSQL_ATTR_LOCAL_INFILE => true));
                     // Throw an Exception when an error occurs
                     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 } catch (PDOException $e){

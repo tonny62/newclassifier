@@ -1,0 +1,71 @@
+<body>
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column">
+                    <!-- display data -->
+                    <div class="box">
+                        <div class="table is-bordered">
+                            <table>
+                                <thead>
+
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($_SESSION['jobads'] as $key => $value): ?>
+                                        <tr>
+                                            <th><?php echo $key ?></th>
+                                            <td><?php echo $value ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <!-- select category -->
+                    <div class="box">
+                        <div class="content">
+                            <h2>Classifier - <?php echo $_GET['categoryname'] ?></h2>
+                        </div>
+                        <div class="columns">
+                            <div class="column has-text-centered">
+                                <a href="/classifier?categoryname=<?php echo $_GET['categoryname'] ?>&action=set" class="button">Tag As <?php echo $_GET['categoryname'] ?></a>
+                            </div>
+                            <div class="column has-text-centered">
+                                <a href="/classifier?action=skip" class="button">Skip</a>
+
+                            </div>
+                        </div>
+                        <div class="table">
+                            <table>
+                                <thead>
+                                    <th>Code</th>
+                                    <th>Tag Name</th>
+                                    <th></th>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($tags as $key => $row): ?>
+                                        <tr>
+                                            <td><?php echo $row['code'] ?></td>
+
+                                            <td>
+                                                <div class="tooltip">
+                                                    <?php echo $row['tagname'] ?>
+                                                    <span class="tooltiptext"><?php echo $row['tagdesc']; ?></span>
+                                                </div>
+                                            </td>
+
+                                            <td><a href="/classifier?categoryname=<?php echo $_GET['categoryname'] ?>&code=<?php echo $row['code'] ?>&action=set" class="button">TAG</a></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
