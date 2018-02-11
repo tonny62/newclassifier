@@ -25,8 +25,8 @@
                 // $controller = MyErrorController::response();
 
                 // go to home
-                require_once '../app/controller/HomeController.php';
-                $controller = HomeController::get($this->controller);
+                require_once '../app/controller/homeController.php';
+                $controller = homeController::get($this->controller);
             }
         }
 

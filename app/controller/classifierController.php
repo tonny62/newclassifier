@@ -3,6 +3,9 @@
     class classifierController extends Controller{
         public static function get($param){
             session_start();
+            if(!isset($_SESSION['schemename'])){
+                header("Location: /");
+            }
             $title = "Classifier";
             if(!isset($_SESSION['jobads'])){
                 $_SESSION['jobads'] = classifierModel::getOneJob($_SESSION['schemename']);
