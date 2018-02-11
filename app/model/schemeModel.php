@@ -52,7 +52,7 @@
                     FROM tags_temp";
             $stmt = $db->query($q);
 
-            $q = "INSERT INTO scheme VALUES('".$schemename."', CURRENT_TIMESTAMP)";
+            $q = "INSERT INTO scheme VALUES('".$schemename."', CURRENT_TIMESTAMP, null)";
             $stmt = $db->query($q);
         }
 
