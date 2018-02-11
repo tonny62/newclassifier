@@ -9,7 +9,7 @@
 
         public static function getScheme(){
             $db = Model::getDB();
-            $q = "SELECT * FROM scheme";
+            $q = "SELECT * FROM scheme"
             $stmt = $db->query($q);
             return $stmt;
         }
