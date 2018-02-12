@@ -28,6 +28,9 @@
                     }
                 }elseif($_GET['action'] == 'skip'){
                     // insert into db
+                    // classifierModel::insertJobIsTagged($_SESSION['jobads']['jobid'], '', '', $_SESSION['schemename']);
+                    unset($_SESSION['jobads']);
+                    header("Location: /classifier");
                 }
             }else{
                 if(!isset($_GET['categoryname'])){

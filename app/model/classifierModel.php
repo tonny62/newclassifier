@@ -50,7 +50,11 @@
 
         public static function insertJobIsTagged($jobid, $code, $categoryname, $schemename){
             $db = Model::getDB();
-            $tagid = classifierModel::getTagID($categoryname, $code, $schemename);
+            if($code == ''){
+                $tagid = 'null';
+            }else{
+                $tagid = classifierModel::getTagID($categoryname, $code, $schemename);
+            }
             $q = "INSERT INTO jobads_is_tagged VALUES ('".$jobid."', ".$tagid.", '".$categoryname."', '".$schemename."', CURRENT_TIMESTAMP)";
             $stmt = $db->query($q);
             if(!$stmt){
