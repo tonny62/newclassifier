@@ -5,8 +5,14 @@
             <div class="box">
                 <div class="content">
                     <h2>Done Creating New Scheme</h2>
-                    <h4>Scheme Name : <?php echo $result['schemename'] ?></h4>
-                    <h4>Timestamp: <?php echo $result['timestamp']; ?></h4>
+                    <h4>Scheme Name : <?php echo $_POST['schemename'] ?></h4>
+                    <h4>MasterDB Name : <?php echo $masterdbname ?></h4>
+
+                    <h4>Sampling Percentage : <?php echo $_POST['percent'] ?> %</h4>
+                    <h4>Sample Size : <?php echo $_POST['percent'] ?> </h4>
+
+                    <h4>Timestamp : <?php echo "12-13-14" ?></h4>
+                    <h4>Row Sampled : <?php echo $numsamples; ?></h4>
                     <div class="has-text-centered">
                         <h4>Click the button below to go home</h4>
                         <a href="/" class="button is-link">Go Home</a>

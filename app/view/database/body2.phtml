@@ -1,0 +1,40 @@
+<body>
+    <section class="section">
+        <div class="container">
+            <div class="box">
+                <div class="content">
+                    <h3>Please review.</h3>
+                </div>
+                <div class="table">
+                    <table>
+                        <thead>
+                            <th>Company</th>
+                            <th>Position</th>
+                            <th>Url</th>
+                            <th>Desc</th>
+                        </thead>
+                        <tbody>
+                            <?php
+                                foreach ($rows as $key => $value) {
+                                    echo "<tr>";
+                                    foreach ($value as $keyin => $valuein) {
+                                        echo "<td>".$valuein."</td>";
+                                    }
+                                    echo "</tr>";
+                                }
+                             ?>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="columns">
+                    <div class="column has-text-centered">
+                        <a href="/database" class="button is-danger">Back</a>
+                    </div>
+                    <div class="column">
+                        <a href="/database/confirm/<?php echo $_POST['dbname']; ?>" class="button is-success">Confirm</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>

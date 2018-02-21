@@ -1,0 +1,59 @@
+<script type="text/javascript">
+    function getFileData(myFile){
+       var file = myFile.files[0];
+       var filename = file.name;
+       document.getElementById("submitbutton").disabled = false;
+       document.getElementById("file-name").innerHTML = filename;
+    }
+</script>
+<body>
+    <section class="section">
+        <div class="container">
+            <div class="box">
+                <div class="columns">
+                    <div class="column is-2">
+
+                    </div>
+                    <div class="column">
+                        <div class="form">
+                            <form action="/database/create" method="post" enctype="multipart/form-data">
+                                <div class="field">
+                                    <label class="label">New MasterDB Name</label>
+                                    <div class="control">
+                                        <input type="text" name="dbname" class="input" placeholder="dbname">
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="label">Jobads File : CSV format with company, position, url, description</label>
+                                    <div class="file has-name">
+                                      <label class="file-label">
+                                        <input class="file-input" type="file" name="dbfile" id="uploadBox" onchange="getFileData(this);" >
+                                        <span class="file-cta">
+                                          <span class="file-label">
+                                            Choose a file…
+                                          </span>
+                                        </span>
+                                      </label>
+                                        <span class="file-name">
+                                            <p id="file-name">Not Uploaded...</p>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="field has-text-centered">
+                                        <input type="submit" name="" value="Continue" class="button" id="submitbutton" disabled/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="column is-2">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</body>

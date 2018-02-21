@@ -1,13 +1,9 @@
 <body>
-    <!-- <?php var_dump($_POST); ?>
-    <br>
-    <?php var_dump($_FILES); ?> -->
     <section class="section">
         <div class="container">
             <div class="box">
                 <div class="content">
-                    <h2>Inserting status : <?php echo $status ?></h2>
-                    <h3>Example from tags table</h3>
+                    <h3>Please Review</h3>
                     <div class="table">
                         <table>
                             <thead>
@@ -16,16 +12,11 @@
                                     <th>code</th>
                                     <th>tag name</th>
                                     <th>tag description</th>
-                                    <th>scheme name</th>
-                                    <th>tagid</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                                    if(!isset($schemename)){
-                                        $schemename = $row['schemename'];
-                                    }
+                                while ($row = $rows->fetch(PDO::FETCH_ASSOC)) {
                                     echo "<tr>";
                                     foreach ($row as $key => $value) {
                                         echo "<td>".$value."</td>";
@@ -40,11 +31,11 @@
                 </div>
                 <div class="columns has-text-centered">
                     <div class="column">
-                        <a href="scheme" class="button">Cancel</a>
+                        <a href="/" class="button">Cancel</a>
                     </div>
                     <div class="column">
 
-                        <a href="scheme/comfirm/<?php echo $schemename ?>" class="button is-success">Confirm</a>
+                        <a href="/scheme/setup/<?php echo $_POST['schemename'] ;?>" class="button is-success">Confirm</a>
                     </div>
                 </div>
             </div>
