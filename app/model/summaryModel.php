@@ -159,7 +159,7 @@
             FIELDS TERMINATED BY ',' ENCLOSED BY '`'
             LINES TERMINATED BY '\n';";
             $stmt = $db->query($q);
-            return "temp/".$filename;
+            return $filename;
         }
 
 

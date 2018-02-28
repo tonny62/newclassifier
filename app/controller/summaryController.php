@@ -9,6 +9,11 @@
                     if (isset($_GET['action'])) {
                         if ($_GET['action'] == 'dump') {
                             $path = summaryModel::dumpCsvFile($_SESSION['scheme']);
+                            header('Content-type: text/csv');
+                            header('Content-disposition: attachment; filename=myfile.csv');
+                            readfile('/tmp/'.$path.'.csv');
+                            unlink('/tmp/myfile.csv');
+                            exit();
                         header("Location:/".$path."");
                         }
                     }else{
