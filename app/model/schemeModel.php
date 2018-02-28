@@ -80,7 +80,7 @@
 
             // insert into tag table from tags_temp
             $q = "INSERT INTO tags(idtag, namecategory, code,nametag, description, idscheme)
-                    SELECT '', namecategory, code, nametag, description , ".$schemeid."
+                    SELECT NULL, namecategory, code, nametag, description , ".$schemeid."
                     FROM ".$schemename."_temp";
             $stmt = $db->query($q);
 
