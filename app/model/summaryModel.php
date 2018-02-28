@@ -84,7 +84,7 @@
             $db = Model::getDB();
             date_default_timezone_set ("Asia/Bangkok");
             $t = time();
-            $folder = "/var/www/html/public/temp";
+            $folder = "/tmp";
             $filename = date("Y-m-d_H:i:s_",$t).$schemearry['namescheme'].".csv";
             $path = $folder."/".$filename;
 
