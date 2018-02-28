@@ -122,7 +122,7 @@
 
             $num_sampling_rows = (int) (ceil((($percentage / 100) * $count)));
 
-            $q = "INSERT INTO samples SELECT '','".$masterdbid."', idjob, '".$schemeid."', 'none'
+            $q = "INSERT INTO samples SELECT NULL,'".$masterdbid."', idjob, '".$schemeid."', 'none'
                     FROM jobads WHERE idmasterdb = ".$masterdbid." ORDER BY RAND() LIMIT ".$num_sampling_rows.";";
             $stmt = $db->query($q);
 
