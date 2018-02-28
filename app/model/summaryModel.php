@@ -84,7 +84,7 @@
             $db = Model::getDB();
             date_default_timezone_set ("Asia/Bangkok");
             $t = time();
-            $folder = "~/Desktop/TDRI/phpapps/todeploy/classifier_mvc/public/temp";
+            $folder = "/var/www/html/public/temp";
             $filename = date("Y-m-d_H:i:s_",$t).$schemearry['namescheme'].".csv";
             $path = $folder."/".$filename;
 
