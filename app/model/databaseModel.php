@@ -17,8 +17,8 @@
                         IGNORE
                         INTO TABLE ".$dbname."_temp
                         CHARACTER SET 'utf8'
-                        FIELDS TERMINATED BY ','
-                        LINES TERMINATED BY '\r\n'";
+                        FIELDS TERMINATED BY ',' ENCLOSED BY '`'
+                        LINES TERMINATED BY '\n'";
             $stmt = $db->query($q);
         }
 

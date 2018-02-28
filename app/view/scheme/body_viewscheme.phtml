@@ -1,0 +1,33 @@
+<body>
+    <section class="section">
+        <div class="container">
+            <div class="box">
+                <div class="content">
+                    <h3>Schema Summary</h3>
+                </div>
+                <div class="table">
+                    <table>
+                        <thead>
+                            <?php
+                                foreach ($schemalist[0] as $key => $value) {
+                                    echo "<th>$key</th>";
+                                }
+                             ?>
+                        </thead>
+                        <tbody>
+                            <?php
+                                foreach ($schemalist as $key => $row) {
+                                    echo "<tr>";
+                                    foreach ($row as $keyin => $valuein) {
+                                        echo "<td>$valuein</td>";
+                                    }
+                                    echo "</tr>";
+                                }
+                             ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>

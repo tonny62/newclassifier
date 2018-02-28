@@ -5,15 +5,16 @@
         <title><?=$title ?></title>
         <link rel="stylesheet" href="http://localhost/css/bulma.min.css">
         <link rel="stylesheet" href="http://localhost/css/my.css">
+        <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     </head>
 
     <body>
         <nav class="navbar" role="navigation" aria-label="main navigation">
           <div class="navbar-menu">
               <div class="navbar-end">
-                  <?php if (isset($_SESSION['schemename'])): ?>
+                  <?php if (isset($_SESSION['scheme'])): ?>
                       <div class="navbar-item">
-                              <p>Current Scheme : <?php echo $_SESSION['schemename'] ?></p>
+                              <p>Current Scheme : <?php echo $_SESSION['scheme']['namescheme'] ?></p>
                       </div>
                   <?php endif; ?>
                   <div class="navbar-item has-drowdown is-hoverable is-boxed">
@@ -39,7 +40,7 @@
                       </div>
                       <div class="navbar-dropdown">
                           <div class="navbar-item">
-                              View/Change Schema
+                              <a href="/scheme/view">View/Change Schema</a>
                           </div>
                           <div class="navbar-item">
                               <a href="/">New Scheme</a>
@@ -60,7 +61,7 @@
                           </div>
                           <hr class="navbar-divider">
                           <div class="navbar-item">
-                              See Tagged Jobads
+                              <a href="/summary/jobads">See Tagged Jobads</a>
                           </div>
                       </div>
                   </div>

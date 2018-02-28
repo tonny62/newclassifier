@@ -18,8 +18,8 @@
                         IGNORE
                         INTO TABLE ".$schemename."_temp
                         CHARACTER SET 'utf8'
-                        FIELDS TERMINATED BY '\t'
-                        LINES TERMINATED BY '\r\n'";
+                        FIELDS TERMINATED BY ',' ENCLOSED BY '`'
+                        LINES TERMINATED BY '\n'";
             $stmt = $db->query($q);
 
             $q = "SELECT count(*) AS count FROM ".$schemename."_temp;";
@@ -93,6 +93,9 @@
                 $q = "INSERT INTO category VALUES ( NULL ,'".$value['namecategory']."', '".$schemeid."')";
                 $stmt = $db->query($q);
             }
+            // insert other category
+            $q = "INSERT INTO category VALUES ( NULL ,'Other', '".$schemeid."')";
+            $stmt = $db->query($q);
 
             // drop temp table
             $q = "DROP TABLE IF EXISTS `".$schemename."_temp`;";
@@ -126,7 +129,17 @@
             return $num_sampling_rows;
         }
 
-
+        public static function getSchemaTable(){
+            $db = Model::getDB();
+            $q = "SELECT samples.idscheme, scheme.namescheme, masterdb.namemasterdb, masterdb.records, scheme.sampling_percentage, count(*) AS samples_count, tagged_count, scheme.timestamp FROM samples
+                    LEFT JOIN scheme ON samples.idscheme = scheme.idscheme
+                    LEFT JOIN masterdb ON masterdb.idmasterdb = scheme.idmasterdb
+                    LEFT JOIN (SELECT samples.idscheme,count(*) as tagged_count FROM samples WHERE samples.status='tagged' GROUP BY samples.idscheme) AS t1 ON t1.idscheme = samples.idscheme
+                    GROUP BY samples.idscheme";
+            $stmt = $db->query($q);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }
 
 
 

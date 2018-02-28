@@ -21,6 +21,63 @@
                             </table>
                         </div>
                     </div>
+                    <div class="box has-text-centered">
+                        <div class="columns">
+                            <div class="column">
+
+                            </div>
+                            <div class="column">
+                                <div class="table">
+                                    <table>
+                                        <thead>
+                                            <th>no</th>
+                                            <th>category</th>
+                                            <th>tagcode</th>
+                                            <th>tagname</th>
+                                            <th>remove</th>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                                $count = 1;
+                                                foreach ($cart as $key => $value) {
+                                                    echo "<tr>";
+                                                    echo "<td>";
+                                                        echo "$count";
+                                                    echo "</td>";
+
+                                                    echo "<td>";
+                                                        echo($value['namecategory']);
+                                                    echo "</td>";
+
+                                                    echo "<td>";
+                                                        echo($value['code']);
+                                                    echo "</td>";
+
+                                                    echo "<td>";
+                                                        echo($value['nametag']);
+                                                    echo "</td>";
+
+                                                    echo "<td class='has-text-centered'>";
+                                                    echo("<a href='/classifier?action=remove&index=".$key."' class='button is-danger is-outlined'><i class='far fa-trash-alt'></i></a>");
+                                                    echo "</td>";
+
+                                                    echo "</tr>";
+                                                    $count++;
+                                                }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="column">
+
+                            </div>
+                        </div>
+
+                        <div class="content has-text-centered">
+                            <a href="/classifier?action=set" class='button is-success is-borered'>Confirm Tag</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="column">
                     <!-- select category -->
@@ -30,7 +87,12 @@
                         </div>
                         <div class="has-text-centered">
                             <?php foreach ($category as $key => $value): ?>
-                                <a href="/classifier?categoryname=<?php echo $value['categoryname'] ?>" class="button"><?php echo $value['categoryname']?></a>
+                                <?php if ($value['namecategory'] == 'Other'): ?>
+                                    <hr>
+                                    <a href="/classifier?categoryname=Other&action=set" class="button">Tag As Other</a>
+                                <?php else: ?>
+                                    <a href="/classifier?categoryname=<?php echo $value['namecategory'] ?>" class="button"><?php echo $value['namecategory']?></a>
+                                <?php endif; ?>
                                 <br>
                                 <br>
 

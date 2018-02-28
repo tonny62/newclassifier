@@ -18,6 +18,14 @@
                     require_once('../app/view/scheme/body_setup.phtml');
                     require_once('../app/template/footer.phtml');
 
+                }elseif ($param[0] == "view") {
+                    $title = "view schema";
+
+                    $schemalist = schemeModel::getSchemaTable();
+
+                    require_once('../app/template/header.phtml');
+                    require_once('../app/view/scheme/body_viewscheme.phtml');
+                    require_once('../app/template/footer.phtml');
                 }else{
                     header("Location: /");
                 }

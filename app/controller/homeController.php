@@ -2,7 +2,7 @@
     require '../app/model/homeModel.php';
 
     class HomeController extends Controller{
-        public static function get($param){
+        public static function get($param){            
             $title = "Home";
             $mystring = "I come from GET";
 

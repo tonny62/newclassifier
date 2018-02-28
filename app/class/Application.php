@@ -6,6 +6,8 @@
         private $param = array();
 
         public function __construct(){
+            session_start();
+
 
             // parse url
             $this->urlParse();

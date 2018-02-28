@@ -1,45 +1,81 @@
 <?php
     require '../app/model/classifierModel.php';
+    // session_start();();
+
     class classifierController extends Controller{
         public static function get($param){
-            session_start();
-            if(!isset($_SESSION['schemename'])){
+            // set scheme first
+            if(!isset($_SESSION['scheme'])){
                 header("Location: /");
             }
             $title = "Classifier";
+            // get one jobads
             if(!isset($_SESSION['jobads'])){
-                $_SESSION['jobads'] = classifierModel::getOneJob($_SESSION['schemename']);
+                $_SESSION['jobads'] = classifierModel::getOneJob($_SESSION['scheme']);
+                if ($_SESSION['jobads'] == 0) {
+                    header("Location: /classifier?done");
+                }
             }
-            $category = classifierModel::getCategory($_SESSION['schemename']);
-
+            // set empty cart
+            if (!isset($_SESSION['cart'])) {
+                $_SESSION['cart'] = array();
+            }
+            // get categories
+            $category = classifierModel::getCategory($_SESSION['scheme']);
+            // handle routes
             if (isset($_GET['action'])) {
                 if($_GET['action'] == 'set'){
                     // insert into db
-                    if (isset($_GET['code'])) {
-                        // tagged with code
-                        classifierModel::insertJobIsTagged($_SESSION['jobads']['jobid'], $_GET['code'], $_GET['categoryname'], $_SESSION['schemename']);
+                    if (isset($_GET['categoryname'])) {
+                        // tagged with category
+                        classifierModel::insertSampleIsTaggedByCategory($_SESSION['jobads'], $_GET['categoryname'],$_SESSION['scheme']);
                         unset($_SESSION['jobads']);
+                        unset($_SESSION['cart']);
                         header("Location: /classifier");
                     }else{
-                        classifierModel::insertJobIsTagged($_SESSION['jobads']['jobid'], '', $_GET['categoryname'], $_SESSION['schemename']);
+                        // tagged with array of tags
+                        $cart = classifierModel::decodeCart($_SESSION['cart']);
+                        classifierModel::insertSampleIsTaggedByArray($_SESSION['jobads'],$cart);
                         unset($_SESSION['jobads']);
+                        unset($_SESSION['cart']);
                         header("Location: /classifier");
-                        // tagged with category
                     }
                 }elseif($_GET['action'] == 'skip'){
-                    // insert into db
-                    // classifierModel::insertJobIsTagged($_SESSION['jobads']['jobid'], '', '', $_SESSION['schemename']);
+                    // skip
+                    classifierModel::unlockJobads($_SESSION['jobads']);
                     unset($_SESSION['jobads']);
+                    header("Location: /classifier");
+                }elseif($_GET['action'] == 'add'){
+                    // add to cart
+                    array_push($_SESSION['cart'], $_GET['code']);
+                    header("Location: /classifier");
+                }elseif($_GET['action'] == 'remove'){
+                    unset($_SESSION['cart'][$_GET['index']]);
                     header("Location: /classifier");
                 }
             }else{
+                // decode cart
+                if ($_SESSION['jobads']['idsample'] == NULL) {
+                    // try release
+                    if (classifierModel::tryRelease($_SESSION['scheme'])) {
+                        unset($_SESSION['jobads']);
+                        unset($_SESSION['cart']);
+                        header("Location: /classifier");
+                    }else{
+                        require_once('../app/template/header.phtml');
+                        require_once('../app/view/classifier/body_done.phtml');
+                        require_once('../app/template/footer.phtml');
+                    }
+                    return 0;
+                }
+                $cart = classifierModel::decodeCart($_SESSION['cart']);
                 if(!isset($_GET['categoryname'])){
                     // call view
                     require_once('../app/template/header.phtml');
                     require_once('../app/view/classifier/body.phtml');
                     require_once('../app/template/footer.phtml');
                 }else{
-                    $tags = classifierModel::getTagsFromCategory($_GET['categoryname']);
+                    $tags = classifierModel::getTagsFromCategory($_GET['categoryname'], $_SESSION['scheme']);
                     require_once('../app/template/header.phtml');
                     require_once('../app/view/classifier/body2.phtml');
                     require_once('../app/template/footer.phtml');
@@ -51,14 +87,21 @@
 
         public static function post($param){
             $title = "Classifier";
-            session_start();
-            if (classifierModel::getschemename($_POST['schemename'])) {
-                // set session schemename and send to get request
-                $_SESSION['schemename'] = $_POST['schemename'];
+            // from home
+            if (classifierModel::getSchemeInfo($_POST['schemename'])) {
+                // get scheme info and hold in $_SESSION
+                session_destroy();
+                session_start();
+                $_SESSION['scheme'] = classifierModel::getSchemeInfo($_POST['schemename']);
+                if (!isset($_SESSION['cart'])) {
+                    $_SESSION['cart'] = array();
+                }
+
                 header("Location: /classifier");
             }else{
                 // no schemename go home
-                header("Location: /");
+                var_dump($_POST);
+                // header("Location: /");
             }
         }
 

@@ -1,6 +1,6 @@
 <?php
     require '../app/model/databaseModel.php';
-    session_start();
+    // session_start();();
     class databaseController extends Controller{
         public static function get($param){
             $title = "Database";

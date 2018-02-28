@@ -60,8 +60,7 @@
                     </div>
                     <div class="content">
                         <h4><u>File Structure</u></h4>
-                        <h5>categoryname &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp jobcode &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp jobname &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp jobdescription</h5>
-                        <h5>*whitespace = \t</h5>
+                        <h5><a href="https://drive.google.com/open?id=1jEzJit0dOgyhJ8O7Wmn_AROy0Ff4T_Md">Get sample files here</a></h5>
                     </div>
                 </div>
             </div>
@@ -84,7 +83,7 @@
                                         <select class="" name="schemename">
                                             <?php
                                                 while(($row = $rows->fetch(PDO::FETCH_ASSOC))){
-                                                    echo "<option value='".$row['schemename']."'>".$row['schemename']." - ".$row['timestamp']."</option>";
+                                                    echo "<option value='".$row['namescheme']."'>".$row['namescheme']." - ".$row['timestamp']."</option>";
                                                 }
                                              ?>
                                         </select>

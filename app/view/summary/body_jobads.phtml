@@ -1,0 +1,53 @@
+<body>
+    <section class="section">
+        <div class="container">
+            <div class="box">
+                <a href="/summary/jobads?action=dump" class="button">Dumps CSV File</a>
+
+            </div>
+            <div class="box">
+                <div class="table">
+                    <table>
+                        <thead>
+                            <?php
+                            $open = 0;
+                                foreach ($rows[0] as $key => $value) {
+                                    if (strpos($key, 'tag') !== 0) {
+                                        echo "<th>$key</th>";
+                                    }else{
+                                        if (!$open) {
+                                            echo "<th>";
+                                            $open = 1;
+                                        }
+                                    }
+                                }
+                                echo "tag</th>";
+                             ?>
+                        </thead>
+                        <tbody>
+                            <?php
+                                foreach ($rows as $key => $row) {
+                                    $open = 0;
+                                    echo "<tr>";
+                                    foreach ($row as $keyin => $value) {
+                                        if (strpos($keyin, 'tag') !== 0) {
+                                            echo "<td>$value</td>";
+                                        }else{
+                                            if (!$open) {
+                                                echo "<td><ul>";
+                                                $open = 1;
+                                            }
+                                            echo "<li>$value<li>";
+                                        }
+                                    }
+                                    echo "</ul></td>";
+                                    echo "</tr>";
+                                }
+                             ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>

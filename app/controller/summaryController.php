@@ -1,17 +1,40 @@
 <?php
     require '../app/model/summaryModel.php';
-    session_start();
 
     class summaryController extends Controller{
         public static function get($param){
             $title = "summary";
-            $summaryrows = summaryModel::getSummaryFrame($_SESSION['schemename']);
-            $category = summaryModel::getCategory($_SESSION['schemename']);
-            $jobsource = summaryModel::getJobsource();
+            if (isset($param[0])) {
+                if ($param[0] == 'jobads') {
+                    if (isset($_GET['action'])) {
+                        if ($_GET['action'] == 'dump') {
+                            $path = summaryModel::dumpCsvFile($_SESSION['scheme']);
+                        header("Location:/".$path."");
+                        }
+                    }else{
+                        if (isset($_GET['page'])) {
+                            $page = $_GET['page'];
+                        }else {
+                            $page = 0;
+                        }
+                        if (isset($_GET['category'])) {
+                            $category = $_GET['category'];
+                        }else{
+                            $category = 0;
+                        }
+                        $rows = summaryModel::getTaggedTable($_SESSION['scheme']);
+                        require_once('../app/template/header.phtml');
+                        require_once('../app/view/summary/body_jobads.phtml');
+                        require_once('../app/template/footer.phtml');
+                    }
+                }
+            }else {
+                $summaryTable = summaryModel::getSummaryTable($_SESSION['scheme']);
+                require_once('../app/template/header.phtml');
+                require_once('../app/view/summary/body.phtml');
+                require_once('../app/template/footer.phtml');
+            }
 
-            require_once('../app/template/header.phtml');
-            require_once('../app/view/summary/body.phtml');
-            require_once('../app/template/footer.phtml');
         }
 
         public static function post($param){
