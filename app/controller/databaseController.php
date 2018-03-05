@@ -26,6 +26,7 @@
             $title = "Database";
             // call view
             if ($param[0] == 'create') {
+                var_dump($_FILES);
                 $result = databaseModel::insertToTemp($_FILES['dbfile']['tmp_name'], $_POST['dbname']);
                 $rows = databaseModel::getHead($_POST['dbname']);
                 require_once('../app/template/header.phtml');
