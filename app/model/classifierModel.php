@@ -21,7 +21,7 @@
             }
             $idsample = $result['idsample'];
 
-            $q = "SELECT idjob, company, position, url FROM `jobads`
+            $q = "SELECT idjob, company, position, description ,url FROM `jobads`
             WHERE `idjob` = '".$result['idjob']."';";
             $stmt = $db->query($q);
             $result = $stmt->fetch(PDO::FETCH_ASSOC); // hold jobads fileds
