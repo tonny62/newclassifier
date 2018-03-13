@@ -85,7 +85,7 @@
             date_default_timezone_set ("Asia/Bangkok");
             $t = time();
             $folder = "/tmp";
-            $filename = date("Y-m-d_H:i:s_",$t).$schemearry['namescheme'].".csv";
+            $filename = date("Y-m-d_H:i:s_",$t).$schemearry['namescheme'];
             $path = $folder."/".$filename;
 
             $q = "SELECT
@@ -155,7 +155,7 @@
                 GROUP BY jobads.idjob) AS table1) as table2
 
             LEFT JOIN jobads ON table2.idjob = jobads.idjob
-            INTO OUTFILE '".$path."'
+            INTO OUTFILE '".$path.".csv'
             FIELDS TERMINATED BY ',' ENCLOSED BY '`'
             LINES TERMINATED BY '\n';";
             $stmt = $db->query($q);

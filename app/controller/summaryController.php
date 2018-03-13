@@ -12,7 +12,7 @@
                             header('Content-type: text/csv');
                             header('Content-disposition: attachment; filename=myfile.csv');
                             readfile('/tmp/'.$path.'.csv');
-                            unlink('/tmp/myfile.csv');
+                            
                             exit();
                         header("Location:/".$path."");
                         }
