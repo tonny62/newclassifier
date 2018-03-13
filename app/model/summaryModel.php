@@ -22,45 +22,45 @@
             FROM
                 (SELECT
                     table1.idjob,
-                    SUBSTRING_INDEX(table1.myconcat,',',1) AS tag1,
+                    SUBSTRING_INDEX(table1.myconcat,'|',1) AS tag1,
                     CASE
-                        WHEN table1.myconcat LIKE '|%|,|%|' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,',',2),',',-1)
+                        WHEN table1.myconcat LIKE '%|%' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,'|',2),'|',-1)
                         ELSE NULL
                         END AS 'tag2',
                     CASE
-                        WHEN table1.myconcat LIKE '|%|,|%|,|%|' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,',',3),',',-1)
+                        WHEN table1.myconcat LIKE '%|%|%' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,'|',3),'|',-1)
                         ELSE NULL
                         END AS 'tag3',
                     CASE
-                        WHEN table1.myconcat LIKE '|%|,|%|,|%|,|%|' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,',',4),',',-1)
+                        WHEN table1.myconcat LIKE '%|%|%|%' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,'|',4),'|',-1)
                         ELSE NULL
                         END AS 'tag4',
                     CASE
-                        WHEN table1.myconcat LIKE '|%|,|%|,|%|,|%|,|%|' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,',',5),',',-1)
+                        WHEN table1.myconcat LIKE '%|%|%|%|%' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,'|',5),'|',-1)
                         ELSE NULL
                         END AS 'tag5',
                     CASE
-                        WHEN table1.myconcat LIKE '|%|,|%|,|%|,|%|,|%|,|%|' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,',',6),',',-1)
+                        WHEN table1.myconcat LIKE '%|%|%|%|%|%' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,'|',6),'|',-1)
                         ELSE NULL
                         END AS 'tag6',
                     CASE
-                        WHEN table1.myconcat LIKE '|%|,|%|,|%|,|%|,|%|,|%|,|%|' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,',',7),',',-1)
+                        WHEN table1.myconcat LIKE '%|%|%|%|%|%|%' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,'|',7),'|',-1)
                         ELSE NULL
                         END AS 'tag7',
                     CASE
-                        WHEN table1.myconcat LIKE '|%|,|%|,|%|,|%|,|%|,|%|,|%|,|%|' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,',',8),',',-1)
+                        WHEN table1.myconcat LIKE '%|%|%|%|%|%|%|%' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,'|',8),'|',-1)
                         ELSE NULL
                         END AS 'tag8',
                     CASE
-                        WHEN table1.myconcat LIKE '|%|,|%|,|%|,|%|,|%|,|%|,|%|,|%|,|%|' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,',',9),',',-1)
+                        WHEN table1.myconcat LIKE '%|%|%|%|%|%|%|%|%' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,'|',9),'|',-1)
                         ELSE NULL
                         END AS 'tag9',
                     CASE
-                        WHEN table1.myconcat LIKE '|%|,|%|,|%|,|%|,|%|,|%|,|%|,|%|,|%|,|%|' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,',',10),',',-1)
+                        WHEN table1.myconcat LIKE '%|%|%|%|%|%|%|%|%|%' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,'|',10),'|',-1)
                         ELSE NULL
                         END AS 'tag10'
                 FROM
-                    (SELECT jobads.idjob, (CASE WHEN tags.nametag IS NULL THEN CONCAT('|',category.namecategory,'|') ELSE GROUP_CONCAT(CONCAT('|',tags.namecategory,'-',tags.nametag,'|')) END) AS myconcat
+                    (SELECT jobads.idjob, (CASE WHEN tags.nametag IS NULL THEN category.namecategory ELSE GROUP_CONCAT(CONCAT(tags.namecategory,'-',tags.nametag) SEPARATOR '|') END) AS myconcat
                     FROM sample_has_tag
                     LEFT JOIN samples ON samples.idsample = sample_has_tag.idsample
                     LEFT JOIN jobads ON samples.idjob = jobads.idjob
@@ -107,45 +107,45 @@
             FROM
                 (SELECT
                     table1.idjob,
-                    SUBSTRING_INDEX(table1.myconcat,',',1) AS tag1,
+                    SUBSTRING_INDEX(table1.myconcat,'|',1) AS tag1,
                     CASE
-                        WHEN table1.myconcat LIKE '|%|,|%|' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,',',2),',',-1)
+                        WHEN table1.myconcat LIKE '%|%' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,'|',2),'|',-1)
                         ELSE NULL
                         END AS 'tag2',
                     CASE
-                        WHEN table1.myconcat LIKE '|%|,|%|,|%|' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,',',3),',',-1)
+                        WHEN table1.myconcat LIKE '%|%|%' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,'|',3),'|',-1)
                         ELSE NULL
                         END AS 'tag3',
                     CASE
-                        WHEN table1.myconcat LIKE '|%|,|%|,|%|,|%|' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,',',4),',',-1)
+                        WHEN table1.myconcat LIKE '%|%|%|%' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,'|',4),'|',-1)
                         ELSE NULL
                         END AS 'tag4',
                     CASE
-                        WHEN table1.myconcat LIKE '|%|,|%|,|%|,|%|,|%|' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,',',5),',',-1)
+                        WHEN table1.myconcat LIKE '%|%|%|%|%' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,'|',5),'|',-1)
                         ELSE NULL
                         END AS 'tag5',
                     CASE
-                        WHEN table1.myconcat LIKE '|%|,|%|,|%|,|%|,|%|,|%|' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,',',6),',',-1)
+                        WHEN table1.myconcat LIKE '%|%|%|%|%|%' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,'|',6),'|',-1)
                         ELSE NULL
                         END AS 'tag6',
                     CASE
-                        WHEN table1.myconcat LIKE '|%|,|%|,|%|,|%|,|%|,|%|,|%|' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,',',7),',',-1)
+                        WHEN table1.myconcat LIKE '%|%|%|%|%|%|%' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,'|',7),'|',-1)
                         ELSE NULL
                         END AS 'tag7',
                     CASE
-                        WHEN table1.myconcat LIKE '|%|,|%|,|%|,|%|,|%|,|%|,|%|,|%|' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,',',8),',',-1)
+                        WHEN table1.myconcat LIKE '%|%|%|%|%|%|%|%' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,'|',8),'|',-1)
                         ELSE NULL
                         END AS 'tag8',
                     CASE
-                        WHEN table1.myconcat LIKE '|%|,|%|,|%|,|%|,|%|,|%|,|%|,|%|,|%|' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,',',9),',',-1)
+                        WHEN table1.myconcat LIKE '%|%|%|%|%|%|%|%|%' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,'|',9),'|',-1)
                         ELSE NULL
                         END AS 'tag9',
                     CASE
-                        WHEN table1.myconcat LIKE '|%|,|%|,|%|,|%|,|%|,|%|,|%|,|%|,|%|,|%|' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,',',10),',',-1)
+                        WHEN table1.myconcat LIKE '%|%|%|%|%|%|%|%|%|%' THEN SUBSTRING_INDEX(SUBSTRING_INDEX(table1.myconcat,'|',10),'|',-1)
                         ELSE NULL
                         END AS 'tag10'
                 FROM
-                (SELECT jobads.idjob, (CASE WHEN tags.nametag IS NULL THEN CONCAT('|',category.namecategory,'|') ELSE GROUP_CONCAT(CONCAT('|',tags.namecategory,'-',tags.nametag,'|')) END) AS myconcat
+                (SELECT jobads.idjob, (CASE WHEN tags.nametag IS NULL THEN category.namecategory ELSE GROUP_CONCAT(CONCAT(tags.namecategory,'-',tags.nametag) SEPARATOR '|') END) AS myconcat
                 FROM sample_has_tag
                 LEFT JOIN samples ON samples.idsample = sample_has_tag.idsample
                 LEFT JOIN jobads ON samples.idjob = jobads.idjob
